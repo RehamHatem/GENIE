@@ -65,10 +65,7 @@ class FirebaseFunctions {
     if (image == null) return null;
 
     try {
-      String fileName = DateTime
-          .now()
-          .millisecondsSinceEpoch
-          .toString();
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
       Reference storageRef = _storage.ref().child('images/$fileName');
       UploadTask uploadTask = storageRef.putFile(image);
 
@@ -76,8 +73,12 @@ class FirebaseFunctions {
 
       if (snapshot.state == TaskState.success) {
         String downloadUrl = await snapshot.ref.getDownloadURL();
+        String userId = FirebaseAuth.instance.currentUser!.uid; // Get current user ID
 
-        await _firestore.collection('images').add({'url': downloadUrl});
+        await _firestore.collection('images').add({
+          'url': downloadUrl,
+          'userId': userId, // Add user ID to Firestore document
+        });
 
         print("Upload successful: $downloadUrl");
 
