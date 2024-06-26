@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'Auth/Authentication.dart';
+import 'Auth/login.dart';
 import 'screens/layout.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 5), () {
-      Navigator.pushReplacementNamed(context, AuthScreen.routeName);
+      Navigator.pushReplacementNamed(context, LogIn.routeName);
     });
   }
   @override

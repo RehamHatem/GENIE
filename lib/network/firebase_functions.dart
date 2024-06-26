@@ -55,7 +55,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:genie/user%20model.dart';
+import 'package:genie/models/user%20model.dart';
 
 class FirebaseFunctions {
   final FirebaseStorage _storage = FirebaseStorage.instance;

@@ -166,9 +166,10 @@ import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../Auth/Authentication.dart';
-import '../firebase_functions.dart';
-import '../provider.dart';
-import '../user model.dart';
+import '../Auth/login.dart';
+import '../network/firebase_functions.dart';
+import '../providers/provider.dart';
+import '../models/user model.dart';
 import 'home_screen.dart';
 
 class Home extends StatefulWidget {
@@ -183,6 +184,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int index = 0;
   late Future<String?> userName;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final FirebaseFunctions _firebaseFunctions = FirebaseFunctions();
   File? _image;
@@ -191,7 +193,7 @@ class _HomeState extends State<Home> {
   Future<void> _uploadImage() async {
     try {
       String? downloadUrl =
-          await _firebaseFunctions.uploadImageToFirebase(_image);
+          await _firebaseFunctions.uploadImageToFirebase(_image,);
       if (downloadUrl != null) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text('Image uploaded successfully!'),
@@ -220,7 +222,7 @@ class _HomeState extends State<Home> {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(color: Color(0xffc5607e)),);
         },
       );
       await _uploadImage();
@@ -239,7 +241,7 @@ class _HomeState extends State<Home> {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(color: Color(0xffc5607e),));
         },
       );
       await _uploadImage();
@@ -251,7 +253,12 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var provider = Provider.of<MyProvider>(context);
     return Scaffold(
+      extendBody: true,
+       extendBodyBehindAppBar: true,
+      key: _scaffoldKey,
       drawer: Drawer(
+        backgroundColor:Color(0xffeaeaea),
+        width: 230,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -265,10 +272,12 @@ class _HomeState extends State<Home> {
                 children: [
                   Text("Hello ",
                       style: TextStyle(color: Color(0xff233774), fontSize: 30)),
-                  Text("${provider.userModel?.userName}",
+                  Text("${provider.userModel?.userName } ",
                       style: TextStyle(color: Color(0xffc5607e), fontSize: 30)),
+                  Icon(Icons.waving_hand)
                 ],
               ),
+              Divider(color: Colors.grey),
               SizedBox(
                 height: 10,
               ),
@@ -281,7 +290,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         _firebaseFunctions.logOut();
                         Navigator.pushNamedAndRemoveUntil(
-                            context, AuthScreen.routeName, (route) => false);
+                            context, LogIn.routeName, (route) => false);
                       },
                       icon: Icon(
                         Icons.logout,
@@ -294,15 +303,23 @@ class _HomeState extends State<Home> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Color(0xff161616),
+        elevation: 0,
+        // backgroundColor: Color(0xff161616),
+         backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.transparent,),
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         centerTitle: true,
         title: GradientText(
-          "GENIE",
+          "All",
           style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 35,
+            fontWeight: FontWeight.w400,
+            fontSize: 20,
+            decoration: TextDecoration.underline,
+            decorationThickness: 3,
+            decorationColor: Colors.black,
+
           ),
-          colors: [Color(0xff233774), Color(0xffc5607e)],
+          colors: const [Color(0xff233774), Color(0xffc5607e)],
         ),
       ),
       body: screens[index],
@@ -327,9 +344,12 @@ class _HomeState extends State<Home> {
             )
           : Column(),
       bottomNavigationBar: BottomAppBar(
+        shape: AutomaticNotchedShape(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+        
         padding: EdgeInsets.zero,
         color: Color(0xff161616),
         child: BottomNavigationBar(
+
           backgroundColor: Colors.transparent,
           elevation: 0,
           unselectedItemColor: Color(0xff686e74),
@@ -339,10 +359,15 @@ class _HomeState extends State<Home> {
           type: BottomNavigationBarType.fixed,
           currentIndex: index,
           onTap: (value) {
-            index = value;
-            setState(() {});
+              if (value == 2) {
+                _scaffoldKey.currentState?.openDrawer();
+              } else {
+                setState(() {
+                  index = value;
+                });
+              }
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: "Home",
@@ -350,6 +375,10 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
               label: "Search",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.more_vert_sharp),
+              label: "More",
             ),
           ],
         ),

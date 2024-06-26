@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:genie/provider.dart';
+import 'package:genie/providers/provider.dart';
 import 'package:genie/splash.dart';
 import 'package:provider/provider.dart';
 import 'Auth/Authentication.dart';
+import 'Auth/about_genie.dart';
+import 'Auth/login.dart';
+import 'Auth/singup.dart';
 import 'screens/layout.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -27,7 +30,9 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.routeName:(context) => SplashScreen(),
         Home.routeName:(context) => Home(),
-        AuthScreen.routeName:(context) => AuthScreen(),
+        LogIn.routeName:(context) => LogIn(),
+        SignIn.routeName:(context) => SignIn(),
+        AboutGenie.routeName:(context) => AboutGenie(),
 
 
       },
