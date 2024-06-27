@@ -1,65 +1,16 @@
-// import 'dart:io';
-// import 'package:firebase_storage/firebase_storage.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-//
-// class FirebaseFunctions {
-//   final FirebaseStorage _storage = FirebaseStorage.instance;
-//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-//
-//   Future<String?> uploadImageToFirebase(File? image) async {
-//     if (image == null) return null;
-//
-//     try {
-//       String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-//       Reference storageRef = _storage.ref().child('images/$fileName');
-//       UploadTask uploadTask = storageRef.putFile(image);
-//
-//       TaskSnapshot snapshot = await uploadTask;
-//
-//       String downloadUrl = await snapshot.ref.getDownloadURL();
-//
-//       await _firestore.collection('images').add({'url': downloadUrl});
-//
-//       print("////////////////////////////////////////////////////////////////////////////////////////");
-//       print(downloadUrl);
-//       print("////////////////////////////////////////////////////////////////////////////////////////");
-//
-//       return downloadUrl;
-//     } catch (e) {
-//       print('Failed to upload image: $e');
-//       return null;
-//     }
-//   }
-//
-//    Future<List<String>> getImagesFromFirestore() async {
-//     List<String> imageUrls = [];
-//
-//     try {
-//       QuerySnapshot querySnapshot = await _firestore.collection('images').get();
-//       querySnapshot.docs.forEach((doc) {
-//         if (doc.exists) {
-//           Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-//           if (data.containsKey('url')) {
-//             imageUrls.add(data['url']);
-//           }
-//         }
-//       });
-//     } catch (e) {
-//       print('Failed to fetch images: $e');
-//     }
-//
-//     return imageUrls;
-//   }
-// }
+
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:genie/models/user%20model.dart';
 
+import 'api.dart';
+
 class FirebaseFunctions {
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final APImanager _apiManager = APImanager();
 
   Future<String?> uploadImageToFirebase(File? image) async {
     if (image == null) return null;
@@ -74,13 +25,16 @@ class FirebaseFunctions {
       if (snapshot.state == TaskState.success) {
         String downloadUrl = await snapshot.ref.getDownloadURL();
         String userId = FirebaseAuth.instance.currentUser!.uid; // Get current user ID
+        String caption = await _apiManager.generateCaption(image);
 
         await _firestore.collection('images').add({
           'url': downloadUrl,
-          'userId': userId, // Add user ID to Firestore document
+          'userId': userId,
+          'caption': caption,// Add user ID to Firestore document
         });
 
         print("Upload successful: $downloadUrl");
+        print("Caption: $caption");
 
         return downloadUrl;
       } else {
