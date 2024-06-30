@@ -1,4 +1,5 @@
 
+import 'dart:convert';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -12,6 +13,42 @@ class FirebaseFunctions {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final APImanager _apiManager = APImanager();
 
+  // Future<String?> uploadImageToFirebase(File? image) async {
+  //   if (image == null) return null;
+  //
+  //   try {
+  //     String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+  //     Reference storageRef = _storage.ref().child('images/$fileName');
+  //     UploadTask uploadTask = storageRef.putFile(image);
+  //
+  //     TaskSnapshot snapshot = await uploadTask;
+  //
+  //     if (snapshot.state == TaskState.success) {
+  //       String downloadUrl = await snapshot.ref.getDownloadURL();
+  //       String userId = FirebaseAuth.instance.currentUser!.uid; // Get current user ID
+  //       String caption = await _apiManager.generateCaption(image);
+  //
+  //       await _firestore.collection('images').add({
+  //         'url': downloadUrl,
+  //         'userId': userId,
+  //         'caption': caption,// Add user ID to Firestore document
+  //         'timestamp': DateTime.now(),
+  //       });
+  //
+  //       print("Upload successful: $downloadUrl");
+  //       print("Caption: $caption");
+  //
+  //       return downloadUrl;
+  //     } else {
+  //       print('Upload task failed with state: ${snapshot.state}');
+  //       return null;
+  //     }
+  //   } catch (e) {
+  //     print('Failed to upload image: $e');
+  //     return null;
+  //   }
+  // }
+
   Future<String?> uploadImageToFirebase(File? image) async {
     if (image == null) return null;
 
@@ -24,17 +61,21 @@ class FirebaseFunctions {
 
       if (snapshot.state == TaskState.success) {
         String downloadUrl = await snapshot.ref.getDownloadURL();
-        String userId = FirebaseAuth.instance.currentUser!.uid; // Get current user ID
+        String userId = FirebaseAuth.instance.currentUser!.uid;
         String caption = await _apiManager.generateCaption(image);
+        List<double> embedding = await _apiManager.generateEmbedding(caption);
 
         await _firestore.collection('images').add({
           'url': downloadUrl,
           'userId': userId,
-          'caption': caption,// Add user ID to Firestore document
+          'caption': caption,
+          'embedding': embedding,
+          'timestamp': DateTime.now(),
         });
 
         print("Upload successful: $downloadUrl");
         print("Caption: $caption");
+        print("Embedding: $embedding");
 
         return downloadUrl;
       } else {
@@ -65,6 +106,21 @@ class FirebaseFunctions {
     }
 
     return imageUrls;
+  }
+  Future<void> deleteImage(String docId, String imageUrl) async {
+    try {
+      // Get the reference to the image in Firebase Storage
+      Reference storageRef = _storage.refFromURL(imageUrl);
+
+      // Delete the image from Firebase Storage
+      await storageRef.delete();
+
+      // Delete the Firestore document
+      await _firestore.collection('images').doc(docId).delete();
+    } catch (e) {
+      print('Failed to delete image: $e');
+      throw e;
+    }
   }
 
 
