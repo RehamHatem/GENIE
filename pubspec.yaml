@@ -45,6 +45,7 @@ dependencies:
   flutter_staggered_grid_view: any
   cached_network_image: any
   http: any
+  flutter_screenutil: any
 
 
 dev_dependencies:

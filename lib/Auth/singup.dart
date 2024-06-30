@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../network/firebase_functions.dart';
@@ -42,9 +43,9 @@ class _SignInState extends State<SignIn> {
         Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            toolbarHeight: 150,
+            toolbarHeight: 150.h,
             backgroundColor: Color(0xffececec),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomRight: Radius.circular(50),bottomLeft: Radius.circular(50))),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomRight: Radius.circular(50.r),bottomLeft: Radius.circular(50.r))),
             title: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,13 +54,13 @@ class _SignInState extends State<SignIn> {
                   "Sign In",
                   style: TextStyle(
                     fontWeight: FontWeight.w800,
-                    fontSize: 40,
+                    fontSize: 40.sp,
 
                   ),
                   colors: [Color(0xff233774), Color(0xffc5607e)],
                 ),
-                SizedBox(height: 3,),
-                Text("Create your account.",style: TextStyle(fontSize: 15,color:Color(0xff161616) )),
+                SizedBox(height: 3.h,),
+                Text("Create your account.",style: TextStyle(fontSize: 15.sp,color:Color(0xff161616) )),
               ],
             ),
             centerTitle: true,
@@ -67,16 +68,16 @@ class _SignInState extends State<SignIn> {
           ),
 
           body: Padding(
-            padding: const EdgeInsets.only(right: 5,left: 5),
+            padding:  EdgeInsets.only(right: 5.w,left: 5.w),
             child: Form(
               key: _formKey,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
                       child: Focus(
                         onFocusChange: (hasFocus) {
                           setState(() {
@@ -89,7 +90,7 @@ class _SignInState extends State<SignIn> {
                           decoration: InputDecoration(
                               label: Text(
                                 "name",
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               labelStyle: TextStyle(
                                 color: nameHasFocus ? Color(0xff233774) : Colors.grey,
@@ -100,13 +101,13 @@ class _SignInState extends State<SignIn> {
                               ),
                               focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffc5607e))),
                               errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff233774))),
                               errorStyle: TextStyle(color: Color(0xffc5607e))),
                           validator: (value) {
@@ -119,7 +120,7 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      padding:EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
                       child: Focus(
                         onFocusChange: (hasFocus) {
                           setState(() {
@@ -132,7 +133,7 @@ class _SignInState extends State<SignIn> {
                           decoration: InputDecoration(
                               label: Text(
                                 "phone",
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               labelStyle: TextStyle(
                                 color: phoneHasFocus ? Color(0xff233774) : Colors.grey,
@@ -143,13 +144,13 @@ class _SignInState extends State<SignIn> {
                               ),
                               focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffc5607e))),
                               errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff233774))),
                               errorStyle: TextStyle(color: Color(0xffc5607e))),
                           validator: (value) {
@@ -162,7 +163,7 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
                       child: Focus(
                         onFocusChange: (hasFocus) {
                           setState(() {
@@ -175,7 +176,7 @@ class _SignInState extends State<SignIn> {
                           decoration: InputDecoration(
                               label: Text(
                                 "email",
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               labelStyle: TextStyle(
                                 color: emailHasFocus ? Color(0xff233774) : Colors.grey,
@@ -186,13 +187,13 @@ class _SignInState extends State<SignIn> {
                               ),
                               focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffc5607e))),
                               errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff233774))),
                               errorStyle: TextStyle(color: Color(0xffc5607e))),
                           validator: (value) {
@@ -211,7 +212,7 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
                       child: Focus(
                         onFocusChange: (hasFocus) {
                           setState(() {
@@ -225,7 +226,7 @@ class _SignInState extends State<SignIn> {
                           decoration: InputDecoration(
                               label: Text(
                                 "password",
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               labelStyle: TextStyle(
                                 color:
@@ -252,13 +253,13 @@ class _SignInState extends State<SignIn> {
 
                               focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffc5607e))),
                               errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff233774))),
                               errorStyle: TextStyle(color: Color(0xffc5607e))),
                           validator: (value) {
@@ -275,14 +276,14 @@ class _SignInState extends State<SignIn> {
                     ),
                     Padding(
                       padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16.0),
+                       EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.0.h),
                       child: Center(
                           child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                       colors: [Color(0xff233774), Color(0xffc5607e)]),
-                                  borderRadius: BorderRadius.circular(12)),
+                                  borderRadius: BorderRadius.circular(12.r)),
                               child: ElevatedButton(
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
@@ -313,7 +314,7 @@ class _SignInState extends State<SignIn> {
                                                 content: Text(errorMessage),
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                    BorderRadius.circular(25)),
+                                                    BorderRadius.circular(25.r)),
                                                 actions: [
                                                   Center(
                                                       child: ElevatedButton(
@@ -326,7 +327,7 @@ class _SignInState extends State<SignIn> {
                                                                 RoundedRectangleBorder(
                                                                     borderRadius:
                                                                     BorderRadius
-                                                                        .circular(15))),
+                                                                        .circular(15.r))),
                                                             backgroundColor:
                                                             MaterialStatePropertyAll(
                                                                 Color(0xffc5607e))),
@@ -341,7 +342,7 @@ class _SignInState extends State<SignIn> {
                                 child: Text(
                                   "SignIn",
                                   style: TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.w400),
+                                      fontSize: 20.sp, fontWeight: FontWeight.w400),
                                 ),
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -362,7 +363,7 @@ class _SignInState extends State<SignIn> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
 
                     Row(
@@ -378,7 +379,7 @@ class _SignInState extends State<SignIn> {
                             "GENIE",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 15,
+                              fontSize: 15.sp,
 
                             ),
                             colors: [Color(0xff233774), Color(0xffc5607e)],

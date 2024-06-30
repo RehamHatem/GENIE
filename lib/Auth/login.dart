@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genie/Auth/singup.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -38,12 +39,12 @@ class _LogInState extends State<LogIn> {
         Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            toolbarHeight: 150,
+            toolbarHeight: 150.h,
             backgroundColor: Color(0xffececec),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(50),
-                    bottomLeft: Radius.circular(50))),
+                    bottomRight: Radius.circular(50.r),
+                    bottomLeft: Radius.circular(50.r))),
             title: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +53,7 @@ class _LogInState extends State<LogIn> {
                   "Welcome to GINIE",
                   style: TextStyle(
                     fontWeight: FontWeight.w800,
-                    fontSize: 40,
+                    fontSize: 40.sp,
                   ),
                   colors: [Color(0xff233774), Color(0xffc5607e)],
                 ),
@@ -60,22 +61,22 @@ class _LogInState extends State<LogIn> {
                   height: 3,
                 ),
                 Text("Enter your credentials to login.",
-                    style: TextStyle(fontSize: 15, color: Colors.black87)),
+                    style: TextStyle(fontSize: 15.sp, color: Colors.black87)),
               ],
             ),
             centerTitle: true,
           ),
           body: Padding(
-            padding: const EdgeInsets.only(right: 5, left: 5),
+            padding:  EdgeInsets.only(right: 5.w, left: 5.w),
             child: Form(
               key: _formKey,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
                       child: Focus(
                         onFocusChange: (hasFocus) {
                           setState(() {
@@ -89,7 +90,7 @@ class _LogInState extends State<LogIn> {
                             label: Text(
                               "email",
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 20.sp,
                               ),
                             ),
                             labelStyle: TextStyle(
@@ -102,13 +103,13 @@ class _LogInState extends State<LogIn> {
                             focusedErrorBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Color(0xffc5607e))),
                             errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                                 borderSide: BorderSide(color: Color(0xff161616))),
                             enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                                 borderSide: BorderSide(color: Color(0xff161616))),
                             focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                                 borderSide: BorderSide(color: Color(0xff233774))),
                             errorStyle: TextStyle(color: Color(0xffc5607e)),
                           ),
@@ -122,7 +123,7 @@ class _LogInState extends State<LogIn> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
                       child: Focus(
                         onFocusChange: (hasFocus) {
                           setState(() {
@@ -136,7 +137,7 @@ class _LogInState extends State<LogIn> {
                           decoration: InputDecoration(
                               label: Text(
                                 "password",
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 20.sp),
                               ),
                               labelStyle: TextStyle(
                                 color:
@@ -162,13 +163,13 @@ class _LogInState extends State<LogIn> {
                                   )),
                               focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xffc5607e))),
                               errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff161616))),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   borderSide: BorderSide(color: Color(0xff233774))),
                               errorStyle: TextStyle(color: Color(0xffc5607e))),
 
@@ -183,14 +184,14 @@ class _LogInState extends State<LogIn> {
                     ),
                     Padding(
                       padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16.0),
+                       EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.0.h),
                       child: Center(
                           child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                       colors: [Color(0xff233774), Color(0xffc5607e)]),
-                                  borderRadius: BorderRadius.circular(12)),
+                                  borderRadius: BorderRadius.circular(12.r)),
                               child: ElevatedButton(
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
@@ -218,7 +219,7 @@ class _LogInState extends State<LogIn> {
                                             content: Text(message),
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
-                                                BorderRadius.circular(25)),
+                                                BorderRadius.circular(25.r)),
                                             actions: [
                                               Center(
                                                   child: ElevatedButton(
@@ -231,7 +232,7 @@ class _LogInState extends State<LogIn> {
                                                             RoundedRectangleBorder(
                                                                 borderRadius:
                                                                 BorderRadius.circular(
-                                                                    15))),
+                                                                    15.r))),
                                                         backgroundColor:
                                                         MaterialStatePropertyAll(
                                                             Color(0xffc5607e))),
@@ -246,7 +247,7 @@ class _LogInState extends State<LogIn> {
                                 child: Text(
                                   "LogIn",
                                   style: TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.w400),
+                                      fontSize: 20.sp, fontWeight: FontWeight.w400),
                                 ),
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -267,7 +268,7 @@ class _LogInState extends State<LogIn> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -281,7 +282,7 @@ class _LogInState extends State<LogIn> {
                             "GENIE",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 15,
+                              fontSize: 15.sp,
                             ),
                             colors: [Color(0xff233774), Color(0xffc5607e)],
                           ),

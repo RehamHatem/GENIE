@@ -210,6 +210,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:genie/network/api.dart';
 import 'package:genie/screens/view%20image.dart';
@@ -267,7 +268,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, top: 60),
+      padding:  EdgeInsets.only(left: 16.w, right: 16.w, top: 60.h),
       child: Column(
         children: [
           Focus(
@@ -291,7 +292,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 label: Text(
                   "search in your gallery ...",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 20.sp,
                   ),
                 ),
                 labelStyle: TextStyle(
@@ -307,20 +308,20 @@ class _SearchScreenState extends State<SearchScreen> {
                 focusedErrorBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Color(0xffc5607e))),
                 errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10.r),
                     borderSide: BorderSide(color: Color(0xff161616))),
                 enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10.r),
                     borderSide: BorderSide(color: Color(0xff161616))),
                 focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10.r),
                     borderSide: BorderSide(color: Color(0xff233774))),
                 errorStyle: TextStyle(color: Color(0xffc5607e)),
               ),
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 15.h,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -329,7 +330,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 colors: [Color(0xff233774), Color(0xffc5607e)],
                 "Tips for good search",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 22.sp,
                 ),
               ),
               IconButton(
@@ -340,7 +341,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         return AlertDialog(
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25)),
+                              borderRadius: BorderRadius.circular(25.r)),
                           title: Center(
                               child: Text(
                             "Search Tips",
@@ -368,7 +369,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                       shape: MaterialStatePropertyAll(
                                           RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(15))),
+                                                  BorderRadius.circular(15.r))),
                                       backgroundColor: MaterialStatePropertyAll(
                                           Color(0xffc5607e))),
                                 ),
@@ -382,12 +383,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   icon: Icon(
                     Icons.tips_and_updates,
                     color: Colors.yellow,
-                    size: 30,
+                    size: 30.sp,
                   ))
             ],
           ),
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
           _loading
               ? Center(
@@ -407,7 +408,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           var imageUrl = _searchResults[index]['url'];
                           var caption = _searchResults[index]['caption'];
                           return Padding(
-                            padding: const EdgeInsets.all(2.0),
+                            padding:  EdgeInsets.all(2.0.w),
                             child: InkWell(
                               onTap: () {
                                 Navigator.push(
@@ -421,7 +422,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 );
                               },
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                                 child: Image.network(
                                   imageUrl,
                                   fit: BoxFit.cover,

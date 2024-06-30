@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:genie/screens/view%20image.dart';
 
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                      alignment: Alignment.topRight,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(2.0),
+                        padding:  EdgeInsets.all(2.0.w),
                         child: Column(
                           children: [
                             InkWell(
@@ -78,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 );
                               },
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                                 child: Image.network(
                                    imageUrl,
 
@@ -103,12 +104,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:  EdgeInsets.all(8.0.w),
                               child: Text(
                                 caption,
                                 style: TextStyle(
                                     color: Color(0xff161616),
-                                    fontSize: 14,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w600
                                 ),
                               ),
@@ -131,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ));
                           }
                         },
-                          icon: Icon(Icons.remove_circle,color: Color(0xffc5607e),size: 20),
+                          icon: Icon(Icons.remove_circle,color: Color(0xffc5607e),size: 20.sp),
 
 
                       ),

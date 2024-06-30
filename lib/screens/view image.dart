@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FullScreenImageView extends StatefulWidget {
   final List<QueryDocumentSnapshot> images;
@@ -36,7 +37,7 @@ class _FullScreenImageViewState extends State<FullScreenImageView> {
               SafeArea(child: SizedBox()),
               Expanded(
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(25.r),
                   child: Image.network(
                     imageUrl,
                     fit: BoxFit.contain,
@@ -59,12 +60,12 @@ class _FullScreenImageViewState extends State<FullScreenImageView> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 16.0,left: 16,top: 8,bottom: 8),
+                padding:  EdgeInsets.only(right: 16.0.w,left: 16.w,top: 8.h,bottom: 8.h),
                 child: Text(
                   caption,
                   style: TextStyle(
                     color: Color(0xff161616),
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

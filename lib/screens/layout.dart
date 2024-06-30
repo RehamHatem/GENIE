@@ -1,6 +1,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:genie/screens/search_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -96,35 +97,35 @@ class _HomeState extends State<Home> {
        extendBodyBehindAppBar: true,
       endDrawer:  Drawer(
         backgroundColor:Color(0xffeaeaea),
-        width: 230,
+        width: 230.w,
 
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0.w),
           child: Column(
             children: [
               SafeArea(
                   child: SizedBox(
-                    height: 10,
+                    height: 10.h,
                   )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Hello ",
-                      style: TextStyle(color: Color(0xff233774), fontSize: 30)),
+                      style: TextStyle(color: Color(0xff233774), fontSize: 30.sp)),
                   Text("${provider.userModel?.userName } ",
-                      style: TextStyle(color: Color(0xffc5607e), fontSize: 30)),
+                      style: TextStyle(color: Color(0xffc5607e), fontSize: 30.sp)),
                   Icon(Icons.waving_hand)
                 ],
               ),
               Divider(color: Colors.grey),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("SignOut",
-                      style: TextStyle(fontSize: 25, color: Color(0xffc5607e))),
+                      style: TextStyle(fontSize: 25.sp, color: Color(0xffc5607e))),
                   IconButton(
                       onPressed: () {
                         _firebaseFunctions.logOut();
@@ -154,7 +155,7 @@ class _HomeState extends State<Home> {
           "All",
           style: TextStyle(
             fontWeight: FontWeight.w400,
-            fontSize: 20,
+            fontSize: 20.sp,
             decoration: TextDecoration.underline,
             decorationThickness: 3,
             decorationColor: Colors.black,
@@ -171,14 +172,14 @@ class _HomeState extends State<Home> {
                 FloatingActionButton(
                   onPressed: _captureImageWithCamera,
                   backgroundColor: Color(0xff161616),
-                  child: Icon(Icons.camera_alt, size: 30),
+                  child: Icon(Icons.camera_alt, size: 30.sp),
                   hoverColor: Colors.grey,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 FloatingActionButton(
                   onPressed: _pickImage,
                   backgroundColor: Color(0xff161616),
-                  child: Icon(Icons.photo, size: 30),
+                  child: Icon(Icons.photo, size: 30.sp),
                   hoverColor: Colors.grey,
                 ),
               ],
@@ -195,8 +196,8 @@ class _HomeState extends State<Home> {
           elevation: 0,
           unselectedItemColor: Color(0xff686e74),
           selectedItemColor: Colors.white,
-          iconSize: 30,
-          selectedLabelStyle: TextStyle(fontSize: 15),
+          iconSize: 30.sp,
+          selectedLabelStyle: TextStyle(fontSize: 15.sp),
           type: BottomNavigationBarType.fixed,
           currentIndex: index,
           onTap: (value) {

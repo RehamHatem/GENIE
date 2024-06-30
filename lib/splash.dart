@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Auth/Authentication.dart';
 import 'Auth/login.dart';
@@ -31,20 +32,20 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image(image: AssetImage("assets/images/Picture1.jpg")),
-          SizedBox(height: 20),
+          SizedBox(height: 20.h),
 
           Column(
             children: [
               Text("Search In Your Gallary",style: TextStyle(
     color: Colors.white,
     fontWeight: FontWeight.w600,
-    fontSize: 20,
+    fontSize: 20.sp,
 
     )),
               Text("Fast And Accurate",style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
-                fontSize: 15,
+                fontSize: 15.sp,
 
               ))
             ],
