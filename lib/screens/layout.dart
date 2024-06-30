@@ -35,6 +35,7 @@ class _HomeState extends State<Home> {
       if (downloadUrl != null) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text('Image uploaded successfully!'),
+
         ));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -93,18 +94,18 @@ class _HomeState extends State<Home> {
     return Scaffold(
       extendBody: true,
        extendBodyBehindAppBar: true,
-      key: _scaffoldKey,
-      drawer: Drawer(
+      endDrawer:  Drawer(
         backgroundColor:Color(0xffeaeaea),
         width: 230,
+
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               SafeArea(
                   child: SizedBox(
-                height: 10,
-              )),
+                    height: 10,
+                  )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -140,6 +141,8 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
+      key: _scaffoldKey,
+
       appBar: index==0? AppBar(
         elevation: 0,
         // backgroundColor: Color(0xff161616),
@@ -182,7 +185,7 @@ class _HomeState extends State<Home> {
             )
           : Column(),
       bottomNavigationBar: BottomAppBar(
-        shape: AutomaticNotchedShape(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+        // shape: AutomaticNotchedShape(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
 
         padding: EdgeInsets.zero,
         color: Color(0xff161616),
@@ -198,7 +201,7 @@ class _HomeState extends State<Home> {
           currentIndex: index,
           onTap: (value) {
               if (value == 2) {
-                _scaffoldKey.currentState?.openDrawer();
+                _scaffoldKey.currentState?.openEndDrawer();
               } else {
                 setState(() {
                   index = value;
