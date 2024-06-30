@@ -30,6 +30,5 @@ def search():
     sorted_indices = sorted(range(len(similarities)), key=lambda i: similarities[i], reverse=True)[:5]
 
     return jsonify(sorted_indices)
-
 if __name__ == '__main__':
     app.run(debug=True)
