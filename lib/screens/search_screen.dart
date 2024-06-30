@@ -212,6 +212,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:genie/network/api.dart';
+import 'package:genie/screens/view%20image.dart';
 
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -226,7 +227,7 @@ class _SearchScreenState extends State<SearchScreen> {
   bool searchHasFocus = false;
   TextEditingController _searchController = TextEditingController();
   String _searchQuery = "";
-  List<DocumentSnapshot> _searchResults = [];
+  List<QueryDocumentSnapshot> _searchResults = [];
   bool _loading = false;
   final APImanager api = new APImanager();
 
@@ -393,8 +394,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: CircularProgressIndicator(
                   color: Color(0xffc5607e),
                 ))
-              : _searchResults.isEmpty
-                  ? Center(child: Text('No images match your search.'))
+              : _searchResults.isEmpty&&!_searchController.text.isEmpty
+                  ? Center(child: Text('No search.'))
                   : Expanded(
                       child: MasonryGridView.builder(
                         gridDelegate:
@@ -407,32 +408,45 @@ class _SearchScreenState extends State<SearchScreen> {
                           var caption = _searchResults[index]['caption'];
                           return Padding(
                             padding: const EdgeInsets.all(2.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
-                                imageUrl,
-                                fit: BoxFit.cover,
-                                loadingBuilder:
-                                    (context, child, loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return Center(
-                                    child: CircularProgressIndicator(
-                                      color: Color(0xffc5607e),
-                                      value:
-                                          loadingProgress.expectedTotalBytes !=
-                                                  null
-                                              ? loadingProgress
-                                                      .cumulativeBytesLoaded /
-                                                  (loadingProgress
-                                                          .expectedTotalBytes ??
-                                                      1)
-                                              : null,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FullScreenImageView(
+                                      images: _searchResults,
+                                      initialIndex: index,
                                     ),
-                                  );
-                                },
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Center(child: Icon(Icons.error));
-                                },
+                                  ),
+                                );
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  imageUrl,
+                                  fit: BoxFit.cover,
+                                  loadingBuilder:
+                                      (context, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        color: Color(0xffc5607e),
+                                        value:
+                                            loadingProgress.expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    (loadingProgress
+                                                            .expectedTotalBytes ??
+                                                        1)
+                                                : null,
+                                      ),
+                                    );
+                                  },
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Center(child: Icon(Icons.error));
+                                  },
+                                ),
                               ),
                             ),
                           );
