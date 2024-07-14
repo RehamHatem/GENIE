@@ -170,7 +170,7 @@ class FirebaseFunctions {
         onError(e.message);
         print('The account already exists for that email.');
       }
-      onError(e.message);
+      else onError(e.message);
     } catch (e) {
       print(e);
       onError(e.toString());

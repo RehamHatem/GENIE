@@ -6,7 +6,7 @@ import 'package:genie/screens/search_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import '../Auth/login.dart';
+import '../Auth/login/login.dart';
 import '../network/firebase_functions.dart';
 import '../providers/provider.dart';
 import 'home_screen.dart';

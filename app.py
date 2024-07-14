@@ -9,9 +9,7 @@ model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 def embedding():
     data = request.json
     text = data.get("text")
-
     embedding = model.encode(text).tolist()
-
     return jsonify(embedding)
 
 @app.route('/search', methods=['POST'])

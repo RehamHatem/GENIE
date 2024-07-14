@@ -7,7 +7,7 @@ class APImanager {
 // https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-large
   Future<String> generateCaption(File image) async {
     final API_URL = "https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-large";
-    final headers = {"Authorization": "Bearer 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"};
+    final headers = {"Authorization": "Bearer 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"};
 
     try {
       final response = await http.post(
@@ -30,7 +30,7 @@ class APImanager {
   }
   Future<List<double>> generateEmbedding(String text) async {
     final response = await http.post(
-      Uri.parse('https://7e5e-156-193-185-169.ngrok-free.app/embedding'),
+      Uri.parse('https://cf48-41-44-9-113.ngrok-free.app/embedding'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'text': text}),
     );
@@ -43,7 +43,7 @@ class APImanager {
 
   Future<List<int>> performSemanticSearch(List<double> queryEmbedding, List<List<double>> captionsEmbeddings) async {
     final response = await http.post(
-      Uri.parse('https://7e5e-156-193-185-169.ngrok-free.app/search'),
+      Uri.parse('https://cf48-41-44-9-113.ngrok-free.app/search'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'query_embedding': queryEmbedding,

@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:genie/Auth/singup.dart';
+import 'package:genie/Auth/signin/singup.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-import 'login.dart';
+import 'login/login.dart';
 
 class AuthScreen extends StatelessWidget {
   static const String routeName="auth";
